@@ -65,8 +65,20 @@
             </template>
           </v-text-field>
         </v-col>
+
         <v-col cols="12">
           <v-card flat>
+            <div class="text-center mt-1 pb-2">
+              <v-pagination
+                  v-model="dataPagination.currentPage"
+                  :total-visible="5"
+                  :length="dataPagination.lastPage"
+                  @input="getUsers"
+              />
+              <span class="title grey--text text--darken-1 text-center caption pa-1">
+                {{ `Registros del ${dataPagination.from} al ${dataPagination.to} de ${dataPagination.itemsLength}` }}
+              </span>
+            </div>
             <v-data-table
                 :headers="headers"
                 :items="items"
@@ -116,12 +128,10 @@
                 </div>
               </template>
             </v-data-table>
-            <div
-                class="text-center mt-1"
-            >
-        <span class="title grey--text text--darken-1 text-center caption pa-1">
-          {{ `Registros del ${dataPagination.from} al ${dataPagination.to} de ${dataPagination.itemsLength}` }}
-        </span>
+            <div class="text-center mt-1">
+              <span class="title grey--text text--darken-1 text-center caption pa-1">
+                {{ `Registros del ${dataPagination.from} al ${dataPagination.to} de ${dataPagination.itemsLength}` }}
+              </span>
               <v-pagination
                   v-model="dataPagination.currentPage"
                   :total-visible="5"
@@ -156,6 +166,7 @@ import axios from '../plugins/axios'
 import DeleteConfirm from '../components/DeleteConfirm'
 import Snackbar from '../components/Snackbar'
 import UserRegister from '../components/UserRegister'
+import {userTableHeaders} from "./userTableHeaders";
 export default {
   name: 'Users',
   components: {
@@ -179,37 +190,7 @@ export default {
       color: '',
       text: ''
     },
-    headers: [
-      {
-        text: 'Nombre',
-        sortable: false,
-        value: 'nombres',
-      },
-      {
-        text: 'Categoría',
-        sortable: false,
-        value: 'descripcion_categoria',
-      },
-      {
-        text: 'Correo Electrónico',
-        sortable: false,
-        value: 'email',
-      },
-      {
-        text: 'Ubicación',
-        sortable: false,
-        value: 'ubicacion',
-      },
-      {
-        text: 'Celular',
-        sortable: false,
-        value: 'celular',
-      },
-      {
-        value: 'options',
-        visibleColumnSelectable: false,
-      }
-    ],
+    headers: userTableHeaders,
     dataPagination: {
       currentPage: 1,
       itemsLength: null,

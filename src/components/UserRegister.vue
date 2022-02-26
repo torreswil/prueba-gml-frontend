@@ -1,7 +1,7 @@
 <template>
   <v-dialog
       v-model="dialog"
-      max-width="500"
+      max-width="800"
       persistent
   >
     <v-card>
@@ -47,72 +47,7 @@
       <ValidationObserver ref="formValid">
         <v-container fluid>
           <v-row dense>
-            <v-col cols="12">
-              <ValidationProvider
-                  name="cédula"
-                  rules="required"
-                  v-slot="{ errors }"
-              >
-                <v-text-field
-                    label="Cédula"
-                    v-model="item.cedula"
-                    outlined
-                    dense
-                    clearable
-                    :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-            <v-col cols="12">
-              <ValidationProvider
-                  name="apellidos"
-                  rules="required"
-                  v-slot="{ errors }"
-              >
-                <v-text-field
-                    label="Apellidos"
-                    v-model="item.apellidos"
-                    outlined
-                    dense
-                    clearable
-                    :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-            <v-col cols="12">
-              <ValidationProvider
-                  name="nombres"
-                  rules="required"
-                  v-slot="{ errors }"
-              >
-                <v-text-field
-                    label="Nombres"
-                    v-model="item.nombres"
-                    outlined
-                    dense
-                    clearable
-                    :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-            <v-col cols="12">
-              <ValidationProvider
-                  name="correo electrónico"
-                  rules="required|email"
-                  v-slot="{ errors }"
-              >
-                <v-text-field
-                    label="Correo Electrónico"
-                    type="email"
-                    v-model="item.email"
-                    outlined
-                    dense
-                    clearable
-                    :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-            <v-col cols="12">
+            <v-col cols="6">
               <ValidationProvider
                   name="categoría"
                   rules="required"
@@ -131,23 +66,7 @@
                 />
               </ValidationProvider>
             </v-col>
-            <v-col cols="12">
-              <ValidationProvider
-                  name="dirección"
-                  rules="required"
-                  v-slot="{ errors }"
-              >
-                <v-text-field
-                    label="Dirección"
-                    v-model="item.direccion"
-                    outlined
-                    dense
-                    clearable
-                    :error-messages="errors"
-                />
-              </ValidationProvider>
-            </v-col>
-            <v-col cols="12">
+            <v-col cols="6">
               <ValidationProvider
                   name="país"
                   rules="required"
@@ -164,10 +83,92 @@
                 />
               </ValidationProvider>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="6">
+              <ValidationProvider
+                  name="nombres"
+                  rules="required|alpha_spaces|minlength:5|maxlength:100"
+                  v-slot="{ errors }"
+              >
+                <v-text-field
+                    label="Nombres"
+                    v-model="item.nombres"
+                    outlined
+                    dense
+                    clearable
+                    :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+            <v-col cols="6">
+              <ValidationProvider
+                  name="apellidos"
+                  rules="required|alpha_spaces|maxlength:100"
+                  v-slot="{ errors }"
+              >
+                <v-text-field
+                    label="Apellidos"
+                    v-model="item.apellidos"
+                    outlined
+                    dense
+                    clearable
+                    :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+            <v-col cols="6">
+              <ValidationProvider
+                  name="cédula"
+                  rules="required|numeric"
+                  v-slot="{ errors }"
+              >
+                <v-text-field
+                    label="Cédula"
+                    v-model="item.cedula"
+                    outlined
+                    dense
+                    clearable
+                    :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+            <v-col cols="6">
+              <ValidationProvider
+                  name="correo electrónico"
+                  rules="required|email|maxlength:150"
+                  v-slot="{ errors }"
+              >
+                <v-text-field
+                    label="Correo Electrónico"
+                    type="email"
+                    v-model="item.email"
+                    outlined
+                    dense
+                    clearable
+                    :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+            <v-col cols="6">
+              <ValidationProvider
+                  name="dirección"
+                  rules="required|maxlength:180"
+                  v-slot="{ errors }"
+              >
+                <v-text-field
+                    label="Dirección"
+                    v-model="item.direccion"
+                    outlined
+                    dense
+                    clearable
+                    :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-col>
+
+            <v-col cols="6">
               <ValidationProvider
                   name="celular"
-                  rules="required"
+                  rules="required|numeric|length:10"
                   v-slot="{ errors }"
               >
                 <v-text-field
@@ -181,7 +182,7 @@
                 />
               </ValidationProvider>
             </v-col>
-            <v-col cols="12" v-if="!item.id">
+            <v-col cols="6" v-if="!item.id">
               <ValidationProvider
                   name="contraseña"
                   rules="required"
