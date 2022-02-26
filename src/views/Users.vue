@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar class="mb-4">
+    <v-app-bar fixed elevate-on-scroll class="mb-4">
       <v-icon class="mr-2">mdi-account-group</v-icon>
       <span class="title">Usuarios</span>
       <v-spacer/>
@@ -13,12 +13,13 @@
       </v-btn>
     </v-app-bar>
     <v-container>
-      <v-row justify="center">
+      <v-row justify="center" class="mb-8">
         <v-col cols="12" md="6">
           <v-autocomplete
               v-model="country"
               :items="countries"
-              outlined
+              filled
+              rounded
               dense
               clearable
               hide-details
@@ -29,7 +30,8 @@
           <v-select
               v-model="category"
               :items="categories"
-              outlined
+              filled
+              rounded
               dense
               clearable
               hide-details
@@ -42,12 +44,10 @@
       <v-row>
         <v-col cols="12" md="6" class="mx-auto">
           <v-text-field
-              placeholder="Buscar"
+              placeholder="Buscar por nombre o cédula"
               append-icon="mdi-magnify"
-              class="searchRows mt-2 mb-1"
               filled
               rounded
-              dense
               clearable
               hide-details
               v-model="search"
@@ -293,6 +293,9 @@ export default {
 </script>
 
 <style>
+.container{
+  margin-top: 72px;
+}
 .searchRows .v-input__prepend-outer {
   margin-top: 0 !important;
 }
